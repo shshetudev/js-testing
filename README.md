@@ -55,3 +55,6 @@ Here violet line represents complexity
 
 ## Writing frequency of different tests
 - We typically have a lot of unit tests. Because if we test every unit of our application.
+
+## References
+- https://www.youtube.com/watch?v=r9HdJ8P6GQI
