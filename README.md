@@ -44,7 +44,7 @@
 
 ## Complexity of writing different tests
 ![Different kinds of testing complexity](images/different-kinds-of-testing-complexity.png)
-Here violet line represents complexity
+Here violet line represents complexity.
   - **Unit tests are relativly easy to write.**
   - **Integration tests are more complex than Unit tests**.
     - The more dependencies we add the more complex it becomes it gets harder to differentiate between what exactly is causing an error. 
@@ -54,7 +54,52 @@ Here violet line represents complexity
     - Here we have to define every step that should be executed and cleverly think about what we want to test and what we not want to expect there.
 
 ## Writing frequency of different tests
+![Frequency of different tests](images/different-kinds-of-testing-frequency.png)
+Here orange line represents frequency.
 - We typically have a lot of unit tests. Because if we test every unit of our application.
+- We have some integration tests to rule out that two individually working units don't work anymore.
+- We have few e2e tests to test some steps or some flows in our application in the browser in an automated way.
+
+# Backend APP: Todo Application (Expressjs)
+We will implement TDD in this app.
+
+## Project setup
+- To create an express js application we have to make sure we have `npm` and `nodejs` installed in our machine.
+- We created a new folder named `nestjs-express-todo-app` and ran `npx express-generator` to generate an express js application.
+- We could also run `npx express-generator --no-view todo-app` to create an app named `todo-app`.
+- We run `npm install` to install the dependencies.
+- We install `jest` as our dev dependencies which is test runner jest `npm install -D jest`.
+- We also install `supertest` we that we are going to use to test apis specifically: `npm install -D supertest`.
+- We can run install both the dependencies in a single command: `npm install -D jest supertest`.
+- To verify the dependencies are install we can check `package.json` file and look for this
+  ```javascript
+   "devDependencies": {
+    "jest": "^28.1.3",
+    "supertest": "^6.2.4"
+  }
+  ```
+- Then we add a new `test` script which runs `jest --watchAll` flag so that anytime our code change it's going to rerun the tests for us which is very important for tdd.
+  ```javascript
+  "scripts": {
+    "test": "jest --watchAll"
+  }
+  ``` 
+- To verify we can run `npm test`. It won't find any tests so we are going to create a file named `app.test.js` file.
+- In `app.test.js` file we add a demo test case and `npm test` will pass automatically.
+  ```javascript
+  it('should run', () => {})
+  ``` 
+
+## Writing test cases in `app.test.js`
+- We import necessary dependencies.
+- The TDD approach is 
+  - We first write our tests and we they would fail.
+  - We refactor our code until the tests are passing.
+  - Then we refactor and improve our code and add more test cases.
+
+## Todo Application folder structure
+- In `route` folder's `index.js` file we have an index route and `users.js` file we have user route defined.
 
 ## References
-- https://www.youtube.com/watch?v=r9HdJ8P6GQI
+- Frontend: https://www.youtube.com/watch?v=r9HdJ8P6GQI
+- Backend: youtube.com/watch?v=M44umyYPiuo
