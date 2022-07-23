@@ -95,7 +95,7 @@ We will implement TDD in this app.
 - The TDD approach is 
   - We first write our tests and we they would fail.
   - We refactor our code until the tests are passing.
-  - Then we refactor and improve our code and add more test cases.
+  - Then we refactor and improve our code and add more test cases from that.
 
 ## Todo Application folder structure
 - In `route` folder's `index.js` file we have an index route and `users.js` file we have user route defined.
