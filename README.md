@@ -96,9 +96,30 @@ We will implement TDD in this app.
   - We first write our tests and we they would fail.
   - We refactor our code until the tests are passing.
   - Then we refactor and improve our code and add more test cases from that.
+  - We are going to group the tests using `describe()` function.
 
 ## Todo Application folder structure
 - In `route` folder's `index.js` file we have an index route and `users.js` file we have user route defined.
+
+## Business logic (Todo Application)
+- Create  todo
+- Read todo
+- Update todo
+- Delete todo
+
+## Implementing TDD scenario by scenario
+### Scenario-1, We are assuming we might have some apis
+-  
+  ```javascript
+    describe('Todos', () => {
+      it('GET /todos --> todos array', () => {})
+      it('GET /todos/id --> specific todo by ID', () => {})
+      it('GET /todos/id --> 404 if not found', () => {})
+      it('POST /todos --> created todo', () => {})
+      it('GET /todos --> validates request body', () => {})
+  })
+    ```
+- We are going to return fake request and we are going to pass in our application in there.
 
 ## References
 - Frontend: https://www.youtube.com/watch?v=r9HdJ8P6GQI
