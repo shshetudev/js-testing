@@ -108,7 +108,7 @@ We will implement TDD in this app.
 - Delete todo
 
 ## Implementing TDD scenario by scenario
-### Scenario-1, We are assuming we might have some apis
+### Scenario-1, We are assuming we might have some apis. We write test cases and they will fail.
 -  
   ```javascript
     describe('Todos', () => {
@@ -122,18 +122,21 @@ We will implement TDD in this app.
   - We are going to return fake request and we are going to pass in our application in there.
   - 
     ```javascript
-    describe('Todos', () => {
-    it('GET /todos --> todos array', () => {
+    describe('Todos', () => {it('GET /todos --> todos array', () => 
+    {
         return request(app).get('/todos')
             .expect('Content-Type', /json/) // asserting content type to be json
             .expect(200) // asserting response to be 200
             .then(response => {
                 expect(response.body).toEqual(
-                    expect.objectConataining({
-                        name: expect.any(String),
-                        completed: expect.any(Boolean)
-                    })
-                ) // asserting the response has array containing
+                    expect.arrayContaining([  // asserting the response has array containing
+                        expect.objectContaining({
+                            id: expect.any(Number),
+                            name: expect.any(String),
+                            completed: expect.any(Boolean)
+                        })
+                    ])
+                )
             })
     })
 
@@ -143,13 +146,12 @@ We will implement TDD in this app.
             .expect(200) // asserting response to be 200
             .then(response => {
                 expect(response.body).toEqual(
-                    expect.arrayContaining([
                         // asserting the object has name and completed property
-                        expect.objectConataining({
+                        expect.objectContaining({
                             name: expect.any(String),
                             completed: expect.any(Boolean)
                         })
-                    ])) // asserting the response has array containing
+                    ) // asserting the response has array containing
             })
     })
 
@@ -157,7 +159,7 @@ We will implement TDD in this app.
         return request(app).get('/todos/999999').expect(404);
     })
 
-    it('POST /todos --> created todo', () => {
+    it('POST /todos --> created todo', () => {  
         return request(app).post('/todos').send({
             name: 'do dishes'
         })
@@ -165,22 +167,49 @@ We will implement TDD in this app.
             .expect(201)
             .then(response => {
                 expect(response.body).toEqual(
-                    expect.arrayContaining([
-                        // asserting the object has name and completed property
-                        expect.objectConataining({
+                        expect.objectContaining({
                             name: 'do dishes',
                             completed: false
                         })
-                    ])) // asserting the response has array containing
+                    )
             })
     });
 
-    it('GET /todos --> validates request body', () => {
+    it('POST /todos --> validates request body', () => {
         return request(app).post('/todos')
             .send({ name: 123 })
             .expect(422);
     });
+    });
     ```
+### Scenario-2, We refactor the code
+- We add a new route `todo.js` and register it to `app.js` file.
+- **Passing `GET /todos --> todos array`**
+- We then add code to the route `/todos` and pass one of our test cases.
+```javascript
+const todos = [
+  {
+    id: 1,
+    name: 'Do something',
+    completed: false
+  }
+]
+
+router.get('/', function (req, res, next) {
+  res.json(todos);
+});
+```
+- **Passing `GET /todos/id --> specific todo by ID`**
+- We run `npm install http-errors` to install http errors.
+
+- **Passing `GET /todos/id --> 404 if not found`**
+- **Passing `POST /todos --> created todo`**
+- **Passing `POST /todos --> validates request body`**
+
+#### Scenario-3, We run the app and add more tests
+- We run the application as `npm start`.
+- We can request from postman to test the apis.
+- We add more tests based on our requirements.
 
 ## References
 - Frontend: https://www.youtube.com/watch?v=r9HdJ8P6GQI
