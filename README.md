@@ -211,6 +211,57 @@ router.get('/', function (req, res, next) {
 - We can request from postman to test the apis.
 - We add more tests based on our requirements.
 
+
+# Frontend APP:
+## Project Structure
+- Go to `frontend/1-js-testing-intro` folder.
+- Then run this command to run the application: `npm install`
+- If we open the `index.html` file using a browser we will see an interface where we can add an user by providing name
+and age.
+
+## Let's write some tests
+- For writing tests we need some external tools. We typically need three kinds of tools.
+  - **Test Runner:**
+    - It executes our tests and summarize results.
+    - We can use a popular test runner called `Mocha`.
+  - **Assertion Library:**
+    - Here we define our test logics and our expected outcomes. 
+    - So these libraries give us tools to define expectations to define comparisons, conditions we want to check as part of our tests.
+    - **Example:**
+      - `Chai` is a popular assertion library.
+      - `Jest` is a popular library for both running tests and asserting. It is a very popular library for both test
+      runner and an assertion library. It's really powerful and provides a lot of functionality.
+  - **Headless Browser:**
+    - For e2e testing we need a headless browser. It's a browser we don't have to click manually.
+    - We can use browser api, the DOM api and without the necessary user interface.
+    - **Example:**
+      - `Puppeteer` is a popular Headless browser for performing e2e testing.
+
+## Let's start with Jest and write some unit tests for function `generateText()`
+-  We install jest in our `frontend/1-js-testing-intro` project by running this command:
+```javascript
+npm install --save-dev jest
+```
+- We will start writing our unit test for `util.js` file. For that we will create a file named `util.unit.test.js`.
+- We could also write `util.spec.js` and jest will automatically identify that.
+- After writing the test case we change in the package.json file and add `test:jest` and run `npm test`.
+- `jest` will automatically run all the `.test` extension files.
+- If we add `test: "jest --watch"` in package.json file then jest automatically check any test on the fly.
+
+## Let's write Integration test for the function `checkAndGenerate()`
+
+## Let's write e2e test
+- e2e test is also called user interface test.
+- We install the `puppeteer` by running the command:
+```javascript
+npm install --save-dev puppeteer
+```
+- puppeteer provides headless version of Chrome browser. So basically it is a browser which we can use to interact with
+DOM and so on. 
+- We can even run it in a version with the head so where we see the browser and we can basically define steps that should
+be executed in that browser so that we can automate certain process on our web page and of course test results of these
+processes as well.
+
 ## References
 - Frontend: https://www.youtube.com/watch?v=r9HdJ8P6GQI
 - Backend: youtube.com/watch?v=M44umyYPiuo
